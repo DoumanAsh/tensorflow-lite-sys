@@ -1,0 +1,20 @@
+[package]
+name = "tensorflow-lite-sys"
+version = "0.1.0"
+edition = "2021"
+keywords = ["tensorflow-lite", "tflite"]
+description = "Tensorflow lite bindings"
+license = "Apache-2.0"
+repository = "https://github.com/DoumanAsh/tensorflow-lite-sys"
+documentation = "https://docs.rs/crate/tensorflow-lite-sys"
+include = [
+    "**/*.rs",
+    "tensorflow/**",
+    "Cargo.toml",
+    "README.md",
+    "LICENSE",
+]
+
+[build-dependencies.cmake]
+version = "0.1"
+default-features = false
