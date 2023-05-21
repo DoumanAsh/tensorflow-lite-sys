@@ -21,8 +21,11 @@ fn build() {
          .pic(true)
          .uses_cxx11();
 
+    #[cfg(windows)]
+    cmake.define("CMAKE_OBJECT_PATH_MAX", "500");
+
     if let Some(generator) = generator {
-        cmake.generator(generator);
+        //cmake.generator(generator);
     }
     if target.contains("msvc") {
         cmake.cflag(MSVC_UTF8)
@@ -31,6 +34,9 @@ fn build() {
     let output = cmake.build();
     println!("cargo:rustc-link-search=native={}/build", output.display());
     println!("cargo:rustc-link-lib=static=tensorflowlite_c");
+    println!("cargo:rerun-if-env-changed=TARGET");
+    println!("cargo:rerun-if-env-changed=CC");
+    println!("cargo:rerun-if-env-changed=CXX");
 }
 
 fn main() {
